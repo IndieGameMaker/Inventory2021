@@ -36,7 +36,7 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
         if (transform.parent == inventoryTr)
         {
-
+            transform.SetParent(itemListTr);
         }
     }
 #endregion
