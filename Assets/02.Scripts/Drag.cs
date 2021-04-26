@@ -7,10 +7,12 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 {
     public static GameObject draggingItem = null;
     private Transform inventoryTr;
+    private Transform itemListTr;
 
     void Start()
     {
         inventoryTr = GameObject.Find("Inventory").transform;
+        itemListTr  = GameObject.Find("ItemList").transform;
     }
 
 #region MOUSE_EVENTS
@@ -31,6 +33,11 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     {
         draggingItem = null;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+        if (transform.parent == inventoryTr)
+        {
+
+        }
     }
 #endregion
 }
