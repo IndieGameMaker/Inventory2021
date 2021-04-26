@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    public static GameObject draggingItem = null;
     private Transform inventoryTr;
 
     void Start()
@@ -16,6 +17,8 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
     // 마우스 드래그가 시작될 때 1번 호출
     public void OnBeginDrag(PointerEventData eventData)
     {
+        draggingItem = this.gameObject;
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
         transform.SetParent(inventoryTr);        
     }
 
@@ -26,7 +29,8 @@ public class Drag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+        draggingItem = null;
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
 #endregion
 }
